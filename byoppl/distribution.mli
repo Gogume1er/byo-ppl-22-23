@@ -63,10 +63,16 @@ val bernoulli : p:float -> int t
 (** {{: https://en.wikipedia.org/wiki/Bernoulli_distribution}Bernoulli distribution} of parameter [p]. *)
 
 val binomial : p:float -> n:int -> int t
-(** {{: https://en.wikipedia.org/wiki/Binomial_distribution}Binomial distribution} of parameter [p] and [n]. *)
+(** {{: https://en.wikipedia.org/wiki/Binomial_distribution}Binomial distribution} with parameters [p] and [n]. *)
 
 val dirac : v:'a -> 'a t
 (** {{: https://en.wikipedia.org/wiki/Dirac_distribution}Dirac distribution} on the value [v]. *)
+
+val hypergeometric : good:int -> bad:int -> sample:int -> int t
+(** {{: https://en.wikipedia.org/wiki/Hypergeometric_distribution}Hypergeometric distribution} of parameters [good], [bad] and [sample]. *)
+
+val poisson : lambda:float -> int t
+(** {{: https://en.wikipedia.org/wiki/Poisson_binomial_distribution}Poisson distribution} of parameter [lambda] *)
 
 val support : values:'a array -> logits:float array -> 'a t
 (** Distribution of a random variable which can take any value [values.(i)] with probability [exp logits.(i)] (probabilities are stored in log scale for numerical stability). *)
@@ -84,3 +90,12 @@ val gaussian : mu:float -> sigma:float -> float t
 
 val uniform : a:float -> b:float -> float t
 (** {{: https://en.wikipedia.org/wiki/Continuous_uniform_distribution}Uniform distribution} on the segment [[a, b]]. *)
+
+val exponential: lambda:float -> float t
+(** {{: https://en.wikipedia.org/wiki/Exponential_distributionn}Exponential distribution} of parameter [lambda]. *)
+
+val gamma: shape:float -> scale:float -> float t
+(** {{: https://en.wikipedia.org/wiki/Gamma_distribution}Gamma distribution} with parameters [shape] and [scale]. *)
+
+val chi2: df:float -> float t
+(** {{: https://en.wikipedia.org/wiki/Chi-squared_distribution}Chi2 distribution} of parameter [df]. *)

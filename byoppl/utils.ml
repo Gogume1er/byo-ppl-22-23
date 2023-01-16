@@ -49,9 +49,9 @@ let shrink ~values ~probs =
   let tbl = Hashtbl.create (Array.length values) in
   Array.iter2
     (fun x w ->
-      match Hashtbl.find_opt tbl x with
-      | None -> Hashtbl.add tbl x w
-      | Some p -> Hashtbl.replace tbl x (p +. w))
+       match Hashtbl.find_opt tbl x with
+       | None -> Hashtbl.add tbl x w
+       | Some p -> Hashtbl.replace tbl x (p +. w))
     values probs;
   let values = tbl |> Hashtbl.to_seq_keys |> Array.of_seq in
   let probs = tbl |> Hashtbl.to_seq_values |> Array.of_seq in
@@ -66,11 +66,13 @@ module Hashtbl = struct
   type ('a, 'b) t = ('a, 'b) Hashtbl.t
 
   (** Add key [k] with value [v] in the table. 
-  If [k] is already bound to [w] repalce the values with [gather w v]*)
+      If [k] is already bound to [w] repalce the values with [gather w v]*)
   let add hist gather k v =
     match Hashtbl.find_opt hist k with
     | None -> Hashtbl.add hist k v
     | Some w -> Hashtbl.replace hist k (gather w v)
+
+  let to_list hist = hist |> Hashtbl.to_seq |> List.of_seq
 
   (** Returns an array containing the keys. *)
   let to_array_keys hist = hist |> Hashtbl.to_seq_keys |> Array.of_seq

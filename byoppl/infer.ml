@@ -34,7 +34,7 @@ module Importance_sampling = struct
     let particle = prob.particles.(prob.id) in
     prob.particles.(prob.id) <- {particle with score = s +. particle.score };
     k () prob
-    
+
   let assume p = factor (if p then 0. else -. infinity)
   let observe d v = factor (Distribution.logpdf d v)
 
