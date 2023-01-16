@@ -22,6 +22,8 @@ dune exec ./examples/funny_bernoulli.exe
 
 ## Realized work
 
+Note: You may need to install the library `owl-plplot` in order to run the test cases.
+
 I have implemented an exact enumeration algorithm for discrete probability distributions inside `Basic`.
 It use a CPS to compute efficiently the probabilities to avoid the duplication of some computing.
 You can find some examples using it in `examples/enumeration.ml`.
